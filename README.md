@@ -1,525 +1,555 @@
-Apache Fineract: A Platform for Microfinance
-============
-[![Swagger Validation](https://validator.swagger.io/validator?url=https://sandbox.mifos.community/fineract-provider/swagger-ui/fineract.yaml)](https://validator.swagger.io/validator/debug?url=https://sandbox.mifos.community/fineract-provider/swagger-ui/fineract.yaml) [![build](https://github.com/apache/fineract/actions/workflows/build.yml/badge.svg)](https://github.com/apache/fineract/actions/workflows/build.yml) [![Docker Hub](https://img.shields.io/docker/pulls/apache/fineract.svg?logo=Docker)](https://hub.docker.com/r/apache/fineract)  [![Docker Build](https://img.shields.io/docker/cloud/build/apache/fineract.svg?logo=Docker)](https://hub.docker.com/r/apache/fineract/builds) [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=apache_fineract&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=apache_fineract)
+<div class="Box-sc-g0xbh4-0 bJMeLZ js-snippet-clipboard-copy-unpositioned" data-hpc="true"><article class="markdown-body entry-content container-lg" itemprop="text"><h1 tabindex="-1" dir="auto"><a id="user-content-apache-fineract-a-platform-for-microfinance" class="anchor" aria-hidden="true" tabindex="-1" href="#apache-fineract-a-platform-for-microfinance"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apache Fineract：小额信贷平台</font></font></h1>
+<p dir="auto"><a href="https://validator.swagger.io/validator/debug?url=https://sandbox.mifos.community/fineract-provider/swagger-ui/fineract.yaml" rel="nofollow"><img src="https://camo.githubusercontent.com/e91923a2e8020c11e19248279e9f659dcf2e468d8683b0efacbc4ecb8fece70a/68747470733a2f2f76616c696461746f722e737761676765722e696f2f76616c696461746f723f75726c3d68747470733a2f2f73616e64626f782e6d69666f732e636f6d6d756e6974792f66696e65726163742d70726f76696465722f737761676765722d75692f66696e65726163742e79616d6c" alt="招摇验证" data-canonical-src="https://validator.swagger.io/validator?url=https://sandbox.mifos.community/fineract-provider/swagger-ui/fineract.yaml" style="max-width: 100%;"></a> <a href="https://github.com/apache/fineract/actions/workflows/build.yml"><img src="https://github.com/apache/fineract/actions/workflows/build.yml/badge.svg" alt="建造" style="max-width: 100%;"></a> <a href="https://hub.docker.com/r/apache/fineract" rel="nofollow"><img src="https://camo.githubusercontent.com/78a75f582bea0a8dff980caa19126bc9974798ac13d03201667e7865062da424/68747470733a2f2f696d672e736869656c64732e696f2f646f636b65722f70756c6c732f6170616368652f66696e65726163742e7376673f6c6f676f3d446f636b6572" alt="码头工人中心" data-canonical-src="https://img.shields.io/docker/pulls/apache/fineract.svg?logo=Docker" style="max-width: 100%;"></a>  <a href="https://hub.docker.com/r/apache/fineract/builds" rel="nofollow"><img src="https://camo.githubusercontent.com/c2e5c6cad98ae99923cdccc646c6c2cf073f0160af28b623233a449e39680de2/68747470733a2f2f696d672e736869656c64732e696f2f646f636b65722f636c6f75642f6275696c642f6170616368652f66696e65726163742e7376673f6c6f676f3d446f636b6572" alt="Docker 构建" data-canonical-src="https://img.shields.io/docker/cloud/build/apache/fineract.svg?logo=Docker" style="max-width: 100%;"></a> <a href="https://sonarcloud.io/summary/new_code?id=apache_fineract" rel="nofollow"><img src="https://camo.githubusercontent.com/681250e45b6e38c4c139767396f7d4706138ac8465c7063fea067e6acec81ac3/68747470733a2f2f736f6e6172636c6f75642e696f2f6170692f70726f6a6563745f6261646765732f6d6561737572653f70726f6a6563743d6170616368655f66696e6572616374266d65747269633d7371616c655f696e646578" alt="技术债务" data-canonical-src="https://sonarcloud.io/api/project_badges/measure?project=apache_fineract&amp;metric=sqale_index" style="max-width: 100%;"></a></p>
 
-</b>
-
-Fineract is a mature platform with open APIs that provides a reliable, robust, and affordable core banking solution for financial institutions offering services to the world’s 3 billion underbanked and unbanked.
-
-[Have a look at the FAQ on our Wiki at apache.org](https://cwiki.apache.org/confluence/display/FINERACT/FAQ) if this README does not answer what you are looking for.  [Visit our JIRA Dashboard](https://issues.apache.org/jira/secure/Dashboard.jspa?selectPageId=12335824) to find issues to work on, see what others are working on, or open new issues.
-
-[![Code Now! (Gitpod)](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/apache/fineract)
-to start contributing to this project in the online web-based IDE GitPod.io right away!
-(You may initially have to press F1 to Find Command and run "Java: Start Language Server".)
-It's of course also possible to contribute with a "traditional" local development environment (see below).
-
-COMMUNITY
-=========
-
-If you are interested in contributing to this project, but perhaps don't quite know how and where to get started, please [join our developer mailing list](http://fineract.apache.org/#contribute), listen into our conversations, chime into threads, and just send us a "Hello!" introduction email; we're a friendly bunch, and look forward to hearing from you.
-
-
-REQUIREMENTS
-============
-* `Java >= 17` (Azul Zulu JVM is tested by our CI on GitHub Actions)
-* MariaDB `11.2`
-
-You can run the required version of the database server in a container, instead of having to install it, like this:
-
-    docker run --name mariadb-11.2 -p 3306:3306 -e MARIADB_ROOT_PASSWORD=mysql -d mariadb:11.2
-
-and stop and destroy it like this:
-
-    docker rm -f mariadb-11.2
-
-<br>Beware that this database container database keeps its state inside the container and not on the host filesystem.  It is lost when you destroy (rm) this container.  This is typically fine for development.  See [Caveats: Where to Store Data on the database container documentation](https://hub.docker.com/_/mariadb) re. how to make it persistent instead of ephemeral.<br>
-
-Tomcat v9 is only required if you wish to deploy the Fineract WAR to a separate external servlet container.  Note that you do not require to install Tomcat to develop Fineract, or to run it in production if you use the self-contained JAR, which transparently embeds a servlet container using Spring Boot.  (Until FINERACT-730, Tomcat 7/8 were also supported, but now Tomcat 9 is required.)
-
-<br>IMPORTANT: If you use MySQL or MariaDB
-============
-
-Recently (after release `1.7.0`), we introduced improved date time handling in Fineract. Date time is from now on stored in UTC and we are enforcing UTC timezone even on the JDBC driver, e. g. for MySQL:
-
-```
-serverTimezone=UTC&useLegacyDatetimeCode=false&sessionVariables=time_zone=‘-00:00’
-```
-
-__DO__: If you do use MySQL as your Fineract database then the following configuration is highly recommended:
-
-* Run the application in UTC (the default command line in our Docker image has the necessary parameters already set)
-* Run the MySQL database server in UTC (if you use managed services like AWS RDS then this should be the default anyway, but it would be good to double-check)
-
-__DON'T__: In case the Fineract instance and the MySQL server are __not__ running in UTC then the following could happen:
-
-* MySQL is saving date time values differently from PostgreSQL
-* Example scenario: if the Fineract instance runs in timezone: GMT+2, and the local date time is 2022-08-11 17:15 ...
-* ... then __PostgreSQL saves__ the LocalDateTime as is: __2022-08-11 17:15__
-* ... and __MySQL saves__ the LocalDateTime in UTC: __2022-08-11 15:15__
-* ... but when we __read__ the date time from PostgreSQL __or__ from MySQL, then both systems give us the same values: __2022-08-11 17:15 GMT+2__
-
-If a previously used Fineract instance didn't run in UTC (backward compatibility), then all prior dates will be read wrongly by MySQL/MariaDB. This can cause issues when you run the database migration scripts.
-
-__RECOMMENDATION__: you need to shift all dates in your database by the timezone offset that your Fineract instance used.
-
-<br>INSTRUCTIONS: How to run for local development
-============
-
-Run the following commands:
-1. `./gradlew createDB -PdbName=fineract_tenants`
-1. `./gradlew createDB -PdbName=fineract_default`
-1. `./gradlew bootRun`
-
-
-<br>INSTRUCTIONS: How to build the JAR file
-============
-1. Clone the repository or download and extract the archive file to your local directory.
-2. Run `./gradlew clean bootJar` to build a modern cloud native fully self contained JAR file which will be created at `fineract-provider/build/libs` directory.
-3. As we are not allowed to include a JDBC driver in the built JAR, download a JDBC driver of your choice. For example: `wget https://downloads.mariadb.com/Connectors/java/connector-java-3.3.2/mariadb-java-client-3.3.2.jar`
-4. Start the jar and pass the directory where you have downloaded the JDBC driver as loader.path, for example: `java -Dloader.path=. -jar fineract-provider/build/libs/fineract-provider.jar` (does not require external Tomcat)
-
-NOTE: we cannot upgrade to version 3.0.x of the MariaDB driver just yet; have to wait until 3.0.4 is out for a bug fix.
-
-The tenants database connection details are configured [via environment variables (as with Docker container)](#instructions-to-run-using-docker-and-docker-compose), e.g. like this:
-
-    export FINERACT_HIKARI_PASSWORD=verysecret
-    ...
-    java -jar fineract-provider.jar
-
-
-<br>SECURITY
-============
-NOTE: The HTTP Basic and OAuth2 authentication schemes are mutually exclusive. You can't enable them both at the same time. Fineract checks these settings on startup and will fail if more than one authentication scheme is enabled.
-
-HTTP Basic Authentication
-------------
-By default Fineract is configured with a HTTP Basic Authentication scheme, so you actually don't have to do anything if you want to use it. But if you would like to explicitly choose this authentication scheme then there are two ways to enable it:
-1. Use environment variables (best choice if you run with Docker Compose):
-```
-FINERACT_SECURITY_BASICAUTH_ENABLED=true
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fineract 是一个具有开放 API 的成熟平台，可为金融机构提供可靠、强大且价格实惠的核心银行解决方案，为全球 30 亿银行服务不足和无银行账户的人口提供服务。</font></font></p>
+<p dir="auto"><a href="https://cwiki.apache.org/confluence/display/FINERACT/FAQ" rel="nofollow"><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果本自述文件没有回答您要查找的内容，  </font><a href="https://cwiki.apache.org/confluence/display/FINERACT/FAQ" rel="nofollow"><font style="vertical-align: inherit;">请查看 apache.org 上的 Wiki 上的常见问题解答。</font></a></font><a href="https://issues.apache.org/jira/secure/Dashboard.jspa?selectPageId=12335824" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">访问我们的 JIRA 仪表板</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">以查找要处理的问题、查看其他人正在处理的内容或提出新问题。</font></font></p>
+<p dir="auto"><a href="https://gitpod.io/#https://github.com/apache/fineract" rel="nofollow"><img src="https://camo.githubusercontent.com/95fbab4ac41e62a9f66e6d1d78f8249c418b33f8c7739c4f9c593f953f5362de/68747470733a2f2f676974706f642e696f2f627574746f6e2f6f70656e2d696e2d676974706f642e737667" alt="立即编码！ （吉波德）" data-canonical-src="https://gitpod.io/button/open-in-gitpod.svg" style="max-width: 100%;"></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+立即开始在基于 Web 的在线 IDE GitPod.io 中为该项目做出贡献！ （您最初可能必须按 F1 查找命令并运行“Java：启动语言服务器”。）当然也可以使用“传统”本地开发环境进行贡献（见下文）。</font></font></p>
+<h1 tabindex="-1" dir="auto"><a id="user-content-community" class="anchor" aria-hidden="true" tabindex="-1" href="#community"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">社区</font></font></h1>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果您有兴趣为这个项目做出贡献，但可能不太知道如何以及从哪里开始，请</font></font><a href="http://fineract.apache.org/#contribute" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">加入我们的开发人员邮件列表</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，聆听我们的对话，加入主题，然后向我们发送“您好！”介绍电子邮件；我们是一群友好的人，期待您的来信。</font></font></p>
+<h1 tabindex="-1" dir="auto"><a id="user-content-requirements" class="anchor" aria-hidden="true" tabindex="-1" href="#requirements"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要求</font></font></h1>
+<ul dir="auto">
+<li><code>Java &gt;= 17</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（Azul Zulu JVM 由我们在 GitHub Actions 上的 CI 进行测试）</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">玛丽亚数据库</font></font><code>11.2</code></li>
+</ul>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您可以在容器中运行所需版本的数据库服务器，而不必安装它，如下所示：</font></font></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>docker run --name mariadb-11.2 -p 3306:3306 -e MARIADB_ROOT_PASSWORD=mysql -d mariadb:11.2
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="docker run --name mariadb-11.2 -p 3306:3306 -e MARIADB_ROOT_PASSWORD=mysql -d mariadb:11.2" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">并像这样停止并销毁它：</font></font></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>docker rm -f mariadb-11.2
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="docker rm -f mariadb-11.2" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto"><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请注意，此数据库容器数据库将其状态保存在容器内，而不是保存在主机文件系统上。当您销毁（rm）此容器时，它就会丢失。这通常适合开发。请参阅</font></font><a href="https://hub.docker.com/_/mariadb" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">数据库容器文档中的注意事项：在何处存储数据</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。如何让它持久而不是短暂。</font></font><br></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">仅当您希望将 Fineract WAR 部署到单独的外部 servlet 容器时才需要 Tomcat v9。请注意，如果您使用独立的 JAR（它使用 Spring Boot 透明地嵌入 servlet 容器），则不需要安装 Tomcat 来开发 Fineract 或在生产中运行它。 （在 FINERACT-730 之前，还支持 Tomcat 7/8，但现在需要 Tomcat 9。）</font></font></p>
+<h1 tabindex="-1" dir="auto"><a id="user-content-important-if-you-use-mysql-or-mariadb" class="anchor" aria-hidden="true" tabindex="-1" href="#important-if-you-use-mysql-or-mariadb"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">重要提示：如果您使用 MySQL 或 MariaDB</font></font></h1>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">最近（发布后</font></font><code>1.7.0</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">），我们在 Fineract 中引入了改进的日期时间处理。从现在开始，日期时间以 UTC 格式存储，我们甚至在 JDBC 驱动程序上也强制使用 UTC 时区，例如对于 MySQL：</font></font></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>serverTimezone=UTC&amp;useLegacyDatetimeCode=false&amp;sessionVariables=time_zone=‘-00:00’
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="serverTimezone=UTC&amp;useLegacyDatetimeCode=false&amp;sessionVariables=time_zone=‘-00:00’" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">DO</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：如果您确实使用 MySQL 作为 Fineract 数据库，那么强烈建议您使用以下配置：</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 UTC 中运行应用程序（我们的 Docker 映像中的默认命令行已设置必要的参数）</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">以 UTC 运行 MySQL 数据库服务器（如果您使用 AWS RDS 等托管服务，那么这应该是默认值，但最好仔细检查）</font></font></li>
+</ul>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请勿</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：如果 Fineract 实例和 MySQL 服务器</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">未</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 UTC 中运行，则可能会发生以下情况：</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">MySQL 保存日期时间值的方式与 PostgreSQL 不同</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">示例场景：如果 Fineract 实例运行在时区：GMT+2，本地日期时间为 2022-08-11 17:15 ...</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">...然后</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">PostgreSQL 按原样保存</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LocalDateTime：</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2022-08-11 17:15</font></font></strong></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">...并且</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">MySQL以UTC格式保存</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LocalDateTime：</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2022-08-11 15:15</font></font></strong></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">...但是当我们从 PostgreSQL</font><strong><font style="vertical-align: inherit;">或MySQL</font></strong></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">读取</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">日期时间时</font><font style="vertical-align: inherit;">，两个系统都会给我们相同的值：</font><strong><font style="vertical-align: inherit;">2022-08-11 17:15 GMT+2</font></strong></font><strong><font style="vertical-align: inherit;"></font></strong><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"></font></strong></li>
+</ul>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果以前使用的 Fineract 实例没有以 UTC 运行（向后兼容），那么 MySQL/MariaDB 将错误地读取所有之前的日期。当您运行数据库迁移脚本时，这可能会导致问题。</font></font></p>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">建议</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：您需要将数据库中的所有日期按 Fineract 实例使用的时区偏移量进行移动。</font></font></p>
+<h1 tabindex="-1" dir="auto"><a id="user-content-instructions-how-to-run-for-local-development" class="anchor" aria-hidden="true" tabindex="-1" href="#instructions-how-to-run-for-local-development"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">说明：如何为当地发展而竞选</font></font></h1>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">运行以下命令：</font></font></p>
+<ol dir="auto">
+<li><code>./gradlew createDB -PdbName=fineract_tenants</code></li>
+<li><code>./gradlew createDB -PdbName=fineract_default</code></li>
+<li><code>./gradlew bootRun</code></li>
+</ol>
+<h1 tabindex="-1" dir="auto"><a id="user-content-instructions-how-to-build-the-jar-file" class="anchor" aria-hidden="true" tabindex="-1" href="#instructions-how-to-build-the-jar-file"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">说明：如何构建 JAR 文件</font></font></h1>
+<ol dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">克隆存储库或下载存档文件并将其解压到本地目录。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">运行</font></font><code>./gradlew clean bootJar</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">以构建一个现代云原生完全自包含的 JAR 文件，该文件将在目录中创建</font></font><code>fineract-provider/build/libs</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">由于我们不允许在构建的 JAR 中包含 JDBC 驱动程序，因此请下载您选择的 JDBC 驱动程序。例如：</font></font><code>wget https://downloads.mariadb.com/Connectors/java/connector-java-3.3.2/mariadb-java-client-3.3.2.jar</code></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">启动jar并将您下载的JDBC驱动程序的目录作为loader.path传递，例如：（</font></font><code>java -Dloader.path=. -jar fineract-provider/build/libs/fineract-provider.jar</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">不需要外部Tomcat）</font></font></li>
+</ol>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">注意：我们目前还无法升级到 MariaDB 驱动程序的 3.0.x 版本；必须等到 3.0.4 发布才能修复错误。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">租户数据库连接详细信息是</font></font><a href="#instructions-to-run-using-docker-and-docker-compose"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">通过环境变量（与 Docker 容器一样）</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">配置的，例如：</font></font></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>export FINERACT_HIKARI_PASSWORD=verysecret
+...
+java -jar fineract-provider.jar
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="export FINERACT_HIKARI_PASSWORD=verysecret
+...
+java -jar fineract-provider.jar" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<h1 tabindex="-1" dir="auto"><a id="user-content-security" class="anchor" aria-hidden="true" tabindex="-1" href="#security"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">安全</font></font></h1>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">注意：HTTP Basic 和 OAuth2 身份验证方案是互斥的。您不能同时启用它们。 Fineract 在启动时检查这些设置，如果启用了多个身份验证方案，Fineract 将失败。</font></font></p>
+<h2 tabindex="-1" dir="auto"><a id="user-content-http-basic-authentication" class="anchor" aria-hidden="true" tabindex="-1" href="#http-basic-authentication"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">HTTP 基本身份验证</font></font></h2>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">默认情况下，Fineract 配置了 HTTP 基本身份验证方案，因此如果您想使用它，实际上无需执行任何操作。但如果您想明确选择此身份验证方案，则有两种方法可以启用它：</font></font></p>
+<ol dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用环境变量（如果使用 Docker Compose 运行，则为最佳选择）：</font></font></li>
+</ol>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>FINERACT_SECURITY_BASICAUTH_ENABLED=true
 FINERACT_SECURITY_OAUTH_ENABLED=false
-```
-2. Use JVM parameters (best choice if you run the Spring Boot JAR):
-```
-java -Dfineract.security.basicauth.enabled=true -Dfineract.security.oauth.enabled=false -jar fineract-provider.jar
-```
-
-<br>OAuth2 AUTHENTICATION
-------------
-There is also an OAuth2 authentication scheme available. Again, two ways to enable it:
-1. Use environment variables (best choice if you run with Docker Compose):
-```
-FINERACT_SECURITY_BASICAUTH_ENABLED=false
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="FINERACT_SECURITY_BASICAUTH_ENABLED=true
+FINERACT_SECURITY_OAUTH_ENABLED=false" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<ol start="2" dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用 JVM 参数（如果运行 Spring Boot JAR，则为最佳选择）：</font></font></li>
+</ol>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>java -Dfineract.security.basicauth.enabled=true -Dfineract.security.oauth.enabled=false -jar fineract-provider.jar
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="java -Dfineract.security.basicauth.enabled=true -Dfineract.security.oauth.enabled=false -jar fineract-provider.jar" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<h2 tabindex="-1" dir="auto"><a id="user-content-oauth2-authentication" class="anchor" aria-hidden="true" tabindex="-1" href="#oauth2-authentication"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">OAuth2 身份验证</font></font></h2>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">还有一个可用的 OAuth2 身份验证方案。同样，有两种启用它的方法：</font></font></p>
+<ol dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用环境变量（如果使用 Docker Compose 运行，则为最佳选择）：</font></font></li>
+</ol>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>FINERACT_SECURITY_BASICAUTH_ENABLED=false
 FINERACT_SECURITY_OAUTH_ENABLED=true
-```
-2. Use JVM parameters (best choice if you run the Spring Boot JAR):
-```
-java -Dfineract.security.basicauth.enabled=false -Dfineract.security.oauth.enabled=true -jar fineract-provider.jar
-```
-
-TWO FACTOR AUTHENTICATION (2FA)
-------------
-You can also enable 2FA authentication. Depending on how you start Fineract add the following:
-
-1. Use environment variable (best choice if you run with Docker Compose):
-```
-FINERACT_SECURITY_2FA_ENABLED=true
-```
-2. Use JVM parameter (best choice if you run the Spring Boot JAR):
-```
--Dfineract.security.2fa.enabled=true
-```
-
-
-<br>INSTRUCTIONS: How to build a WAR file
-============
-1. Clone the repository or download and extract the archive file to your local directory.
-2. Run `./gradlew :fineract-war:clean :fineract-war:war` to build a traditional WAR file which will be created at `fineract-war/build/libs` directory.
-3. Deploy this WAR to your Tomcat v9 Servlet Container.
-
-We recommend using the JAR instead of the WAR file deployment, because it's much easier.
-
-Note that with the 1.4 release the tenants database pool configuration changed from Tomcat DBCP in XML to an embedded Hikari, configured by environment variables, see above.
-
-
-INSTRUCTIONS: How to execute Integration Tests
-============
-> Note that if this is the first time to access MySQL DB, then you may need to reset your password.
-
-Run the following commands:
-1. `./gradlew createDB -PdbName=fineract_tenants`
-1. `./gradlew createDB -PdbName=fineract_default`
-1. `./gradlew clean test`
-
-
-INSTRUCTIONS: How to run and debug in Eclipse IDE
-============
-
-It is possible to run Fineract in Eclipse IDE and also to debug Fineract using Eclipse's debugging facilities.
-To do this, you need to create the Eclipse project files and import the project into an Eclipse workspace:
-
-1. Create Eclipse project files into the Fineract project by running `./gradlew cleanEclipse eclipse`
-2. Import the fineract-provider project into your Eclipse workspace (File->Import->General->Existing Projects into Workspace, choose root directory fineract/fineract-provider)
-3. Do a clean build of the project in Eclipse (Project->Clean...)
-3. Run / debug Fineract by right clicking on org.apache.fineract.ServerApplication class and choosing Run As / Debug As -> Java Application. All normal Eclipse debugging features (breakpoints, watchpoints etc) should work as expected.
-
-If you change the project settings (dependencies etc) in Gradle, you should redo step 1 and refresh the project in Eclipse.
-
-You can also use Eclipse Junit support to run tests in Eclipse (Run As->Junit Test)
-
-Finally, modifying source code in Eclipse automatically triggers hot code replace to a running instance, allowing you to immediately test your changes
-
-
-INSTRUCTIONS: How to run using Docker and docker-compose
-===================================================
-
-It is possible to do a 'one-touch' installation of Fineract using containers (AKA "Docker").
-Fineract now packs the mifos community-app web UI in it's docker deploy.
-You can now run and test fineract with a GUI directly from the combined docker builds.
-This includes the database running in a container.
-
-As Prerequisites, you must have `docker` and `docker-compose` installed on your machine; see
-[Docker Install](https://docs.docker.com/install/) and
-[Docker Compose Install](https://docs.docker.com/compose/install/).
-
-Alternatively, you can also use [Podman](https://github.com/containers/libpod)
-(e.g. via `dnf install podman-docker`), and [Podman Compose](https://github.com/containers/podman-compose/)
-(e.g. via `pip3 install podman-compose`) instead of Docker.
-
-Now to run a new Fineract instance you can simply:
-
-1. `git clone https://github.com/apache/fineract.git ; cd fineract`
-1. for windows, use `git clone https://github.com/apache/fineract.git --config core.autocrlf=input ; cd fineract`
-1. `./gradlew :fineract-provider:jibDockerBuild -x test`
-1. install the Loki log driver with `docker plugin install grafana/loki-docker-driver:latest --alias loki --grant-all-permissions`
-1. `docker compose -f docker-compose-development.yml up -d`
-1. fineract (back-end) is running at https://localhost:8443/fineract-provider/
-1. wait for https://localhost:8443/fineract-provider/actuator/health to return `{"status":"UP"}`
-1. you must go to https://localhost:8443 and remember to accept the self-signed SSL certificate of the API once in your browser, otherwise  you get a message that is rather misleading from the UI.
-1. community-app (UI) is running at http://localhost:9090/?baseApiUrl=https://localhost:8443/fineract-provider&tenantIdentifier=default
-1. login using default _username_ `mifos` and _password_ `password`
-
-https://hub.docker.com/r/apache/fineract has a pre-built container image of this project, built continuously.
-
-You must specify the MySQL tenants database JDBC URL by passing it to the `fineract` container via environment
-variables; please consult the [`docker-compose.yml`](docker-compose.yml) for exact details how to specify those.
-_(Note that in previous versions, the `mysqlserver` environment variable used at `docker build` time instead of at
-`docker run` time did something similar; this has changed in [FINERACT-773](https://issues.apache.org/jira/browse/FINERACT-773)),
-and the `mysqlserver` environment variable is now no longer supported.)_
-
-The logfiles and the Java Flight Recorder output are available in `PROJECT_ROOT/build/fineract/logs`. If you use IntelliJ then you can double-click on the `.jfr` file and open it with the IDE. You can also download Azul Mission Control from here https://www.azul.com/products/components/azul-mission-control/ to analyze the Java Flight Recorder file.
-
-NOTE: If you have issues with the file permissions and Docker Compose then you might need to change the variable values for `FINERACT_USER` and `FINERACT_GROUP` in `PROJECT_ROOT/config/docker/env/fineract-common.env`. You can find out what values you need to put there with the following commands:
-
-```
-id -u ${USER}
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="FINERACT_SECURITY_BASICAUTH_ENABLED=false
+FINERACT_SECURITY_OAUTH_ENABLED=true" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<ol start="2" dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用 JVM 参数（如果运行 Spring Boot JAR，则为最佳选择）：</font></font></li>
+</ol>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>java -Dfineract.security.basicauth.enabled=false -Dfineract.security.oauth.enabled=true -jar fineract-provider.jar
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="java -Dfineract.security.basicauth.enabled=false -Dfineract.security.oauth.enabled=true -jar fineract-provider.jar" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<h2 tabindex="-1" dir="auto"><a id="user-content-two-factor-authentication-2fa" class="anchor" aria-hidden="true" tabindex="-1" href="#two-factor-authentication-2fa"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">双因素身份验证 (2FA)</font></font></h2>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您还可以启用 2FA 身份验证。根据您启动 Fineract 的方式添加以下内容：</font></font></p>
+<ol dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用环境变量（如果使用 Docker Compose 运行，则为最佳选择）：</font></font></li>
+</ol>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>FINERACT_SECURITY_2FA_ENABLED=true
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="FINERACT_SECURITY_2FA_ENABLED=true" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<ol start="2" dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用 JVM 参数（如果运行 Spring Boot JAR，则为最佳选择）：</font></font></li>
+</ol>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>-Dfineract.security.2fa.enabled=true
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="-Dfineract.security.2fa.enabled=true" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<h1 tabindex="-1" dir="auto"><a id="user-content-instructions-how-to-build-a-war-file" class="anchor" aria-hidden="true" tabindex="-1" href="#instructions-how-to-build-a-war-file"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">说明：如何构建 WAR 文件</font></font></h1>
+<ol dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">克隆存储库或下载存档文件并将其解压到本地目录。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">运行</font></font><code>./gradlew :fineract-war:clean :fineract-war:war</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">以构建将在目录中创建的传统 WAR 文件</font></font><code>fineract-war/build/libs</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将此 WAR 部署到您的 Tomcat v9 Servlet 容器。</font></font></li>
+</ol>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我们建议使用 JAR 而不是 WAR 文件部署，因为它更容易。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请注意，在 1.4 版本中，租户数据库池配置从 XML 中的 Tomcat DBCP 更改为嵌入式 Hikari，由环境变量配置，请参见上文。</font></font></p>
+<h1 tabindex="-1" dir="auto"><a id="user-content-instructions-how-to-execute-integration-tests" class="anchor" aria-hidden="true" tabindex="-1" href="#instructions-how-to-execute-integration-tests"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">说明：如何执行集成测试</font></font></h1>
+<blockquote>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请注意，如果这是第一次访问 MySQL DB，那么您可能需要重置密码。</font></font></p>
+</blockquote>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">运行以下命令：</font></font></p>
+<ol dir="auto">
+<li><code>./gradlew createDB -PdbName=fineract_tenants</code></li>
+<li><code>./gradlew createDB -PdbName=fineract_default</code></li>
+<li><code>./gradlew clean test</code></li>
+</ol>
+<h1 tabindex="-1" dir="auto"><a id="user-content-instructions-how-to-run-and-debug-in-eclipse-ide" class="anchor" aria-hidden="true" tabindex="-1" href="#instructions-how-to-run-and-debug-in-eclipse-ide"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">说明：如何在 Eclipse IDE 中运行和调试</font></font></h1>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">可以在 Eclipse IDE 中运行 Fineract，也可以使用 Eclipse 的调试工具来调试 Fineract。为此，您需要创建 Eclipse 项目文件并将项目导入到 Eclipse 工作区中：</font></font></p>
+<ol dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">通过运行将 Eclipse 项目文件创建到 Fineract 项目中</font></font><code>./gradlew cleanEclipse eclipse</code></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将fineract-provider项目导入到Eclipse工作区（File-&gt;Import-&gt;General-&gt;Existing Projects into Workspace，选择根目录fineract/fineract-provider）</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Eclipse 中对项目进行干净构建（Project-&gt;Clean...）</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">通过右键单击 org.apache.fineract.ServerApplication 类并选择运行方式/调试方式 -&gt; Java 应用程序来运行/调试 Fineract。所有正常的 Eclipse 调试功能（断点、观察点等）都应该按预期工作。</font></font></li>
+</ol>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果您在 Gradle 中更改项目设置（依赖项等），则应重做步骤 1 并在 Eclipse 中刷新项目。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您还可以使用 Eclipse Junit 支持在 Eclipse 中运行测试（运行方式 -&gt; Junit Test）</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">最后，在 Eclipse 中修改源代码会自动触发热代码替换到正在运行的实例，使您可以立即测试您的更改</font></font></p>
+<h1 tabindex="-1" dir="auto"><a id="user-content-instructions-how-to-run-using-docker-and-docker-compose" class="anchor" aria-hidden="true" tabindex="-1" href="#instructions-how-to-run-using-docker-and-docker-compose"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">说明：如何使用 Docker 和 docker-compose 运行</font></font></h1>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">可以使用容器（又名“Docker”）进行 Fineract 的“一键式”安装。 Fineract 现在将 mifos 社区应用程序 Web UI 打包在其 docker 部署中。现在，您可以直接从组合的 docker 构建中使用 GUI 运行和测试 Fineract。这包括在容器中运行的数据库。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">作为先决条件，您必须</font><font style="vertical-align: inherit;">在计算机上安装</font></font><code>docker</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">并安装；</font></font><code>docker-compose</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请参阅
+</font></font><a href="https://docs.docker.com/install/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Docker 安装</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">和
+</font></font><a href="https://docs.docker.com/compose/install/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Docker Compose 安装</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">或者，您也可以使用</font></font><a href="https://github.com/containers/libpod"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Podman</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+（例如 via </font></font><code>dnf install podman-docker</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）和</font></font><a href="https://github.com/containers/podman-compose/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Podman Compose</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+（例如 via </font></font><code>pip3 install podman-compose</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）代替 Docker。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">现在要运行新的 Fineract 实例，您可以简单地：</font></font></p>
+<ol dir="auto">
+<li><code>git clone https://github.com/apache/fineract.git ; cd fineract</code></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">对于 Windows，使用</font></font><code>git clone https://github.com/apache/fineract.git --config core.autocrlf=input ; cd fineract</code></li>
+<li><code>./gradlew :fineract-provider:jibDockerBuild -x test</code></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">安装 Loki 日志驱动程序</font></font><code>docker plugin install grafana/loki-docker-driver:latest --alias loki --grant-all-permissions</code></li>
+<li><code>docker compose -f docker-compose-development.yml up -d</code></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fineract（后端）正在</font></font><a href="https://localhost:8443/fineract-provider/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://localhost:8443/fineract-provider/运行</font></font></a></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">等待</font></font><a href="https://localhost:8443/fineract-provider/actuator/health" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://localhost:8443/fineact-provider/actuator/health</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">返回</font></font><code>{"status":"UP"}</code></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您必须访问</font></font><a href="https://localhost:8443" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://localhost:8443</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">并记住在浏览器中接受 API 的自签名 SSL 证书，否则您会从 UI 中收到一条相当具有误导性的消息。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">社区应用程序（UI）运行在</font></font><a href="http://localhost:9090/?baseApiUrl=https://localhost:8443/fineract-provider&amp;tenantIdentifier=default" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">http://localhost:9090/?baseApiUrl=https://localhost:8443/fineract-provider&amp;tenantIdentifier=default</font></font></a></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用默认</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用户名</font></font></em> <code>mifos</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">和</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">密码登录</font></font></em> <code>password</code></li>
+</ol>
+<p dir="auto"><a href="https://hub.docker.com/r/apache/fineract" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://hub.docker.com/r/apache/fineract</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">有一个该项目的预构建容器映像，并且是持续构建的。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您必须通过环境变量将 MySQL 租户数据库 JDBC URL 传递给</font></font><code>fineract</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">容器来指定它；请参阅 来了解</font></font><a href="/apache/fineract/blob/develop/docker-compose.yml"><code>docker-compose.yml</code></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如何指定这些的确切详细信息。
+ </font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（请注意，在以前的版本中，</font></font><code>mysqlserver</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用 at </font></font><code>docker build</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">time 而不是 at
+ time 的环境变量做了类似的事情；这在</font><a href="https://issues.apache.org/jira/browse/FINERACT-773" rel="nofollow"><font style="vertical-align: inherit;">FINERACT-773</font></a></font><code>docker run</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">中已更改</font><font style="vertical-align: inherit;">），并且</font><font style="vertical-align: inherit;">现在不再支持该环境变量。）</font></font><a href="https://issues.apache.org/jira/browse/FINERACT-773" rel="nofollow"><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"></font><code>mysqlserver</code><font style="vertical-align: inherit;"></font></em></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">日志文件和 Java Flight Recorder 输出可在</font></font><code>PROJECT_ROOT/build/fineract/logs</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">.如果您使用 IntelliJ，则可以双击该</font></font><code>.jfr</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文件并使用 IDE 打开它。您还可以从此处下载 Azul Mission Control </font></font><a href="https://www.azul.com/products/components/azul-mission-control/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.azul.com/products/components/azul-mission-control/</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">来分析 Java Flight Recorder 文件。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">注意：如果您对文件权限和 Docker Compose 有问题，那么您可能需要更改</font></font><code>FINERACT_USER</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">和</font></font><code>FINERACT_GROUP</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">中的变量值</font></font><code>PROJECT_ROOT/config/docker/env/fineract-common.env</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。您可以使用以下命令找出需要放在那里的值：</font></font></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>id -u ${USER}
 id -u ${GROUP}
-```
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="id -u ${USER}
+id -u ${GROUP}" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请确保您没有签入更改的值。默认设置通常适用于大多数人。</font></font></p>
+<h1 tabindex="-1" dir="auto"><a id="user-content-connection-pool-configuration" class="anchor" aria-hidden="true" tabindex="-1" href="#connection-pool-configuration"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">连接池配置</font></font></h1>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请检查</font></font><code>application.properties</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">哪些连接池设置可以调整。关联的环境变量以</font></font><code>FINERACT_HIKARI_*</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">.您可以在</font><a href="https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby"><font style="vertical-align: inherit;">https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby</font></a><font style="vertical-align: inherit;">找到有关特定连接池设置 (Hikari) 的更多信息</font></font><a href="https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby"><font style="vertical-align: inherit;"></font></a></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">注意：我们将保持向后兼容性，直到下一个版本发布，以确保一切按预期工作。带前缀的环境变量</font></font><code>fineract_tenants_*</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">仍然可用于配置数据库连接，但我们强烈鼓励使用</font></font><code>FINERACT_HIKARI_*</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">更多选项。</font></font></p>
+<h1 tabindex="-1" dir="auto"><a id="user-content-ssl-configuration" class="anchor" aria-hidden="true" tabindex="-1" href="#ssl-configuration"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SSL 配置</font></font></h1>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">另请阅读</font></font><a href="/apache/fineract/blob/develop/fineract-doc/src/docs/en/deployment.adoc#https"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">HTTPS 相关文档</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">默认情况下启用 SSL，但所有与 SSL 相关的属性现在都是可调的。可以通过将环境变量设置为 false 来关闭 SSL </font></font><code>FINERACT_SERVER_SSL_ENABLED</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。如果您这样做，请确保还将服务器端口更改为</font></font><code>8080</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">via 变量</font></font><code>FINERACT_SERVER_PORT</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，只是为了保持约定。现在，您可以通过设置</font></font><code>FINERACT_SERVER_SSL_KEY_STORE</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">不同（非嵌入式）密钥库的路径来</font><font style="vertical-align: inherit;">轻松选择不同的 SSL 密钥库。</font><font style="vertical-align: inherit;">密码可以通过设置</font></font><code>FINERACT_SERVER_SSL_KEY_STORE_PASSWORD</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。有关更多详细信息，</font><font style="vertical-align: inherit;">请参阅该</font></font><code>application.properties</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文件和最新的 Spring Boot 文档 ( </font></font><a href="https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> )。</font></font></p>
+<h1 tabindex="-1" dir="auto"><a id="user-content-tomcat-configuration" class="anchor" aria-hidden="true" tabindex="-1" href="#tomcat-configuration"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">雄猫配置</font></font></h1>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如何对 Tomcat 进行性能调优</font><font style="vertical-align: inherit;">请参考</font></font><code>application.properties</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Spring Boot 官方文档（</font></font><a href="https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ）。注意：您现在可以通过环境变量设置可接受的表单 POST 大小（默认为 2MB）</font></font><code>FINERACT_SERVER_TOMCAT_MAX_HTTP_FORM_POST_SIZE</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+<h1 tabindex="-1" dir="auto"><a id="user-content-instructions-how-to-run-on-kubernetes" class="anchor" aria-hidden="true" tabindex="-1" href="#instructions-how-to-run-on-kubernetes"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">说明：如何在 Kubernetes 上运行</font></font></h1>
+<h2 tabindex="-1" dir="auto"><a id="user-content-general-clusters" class="anchor" aria-hidden="true" tabindex="-1" href="#general-clusters"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">一般集群</font></font></h2>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您还可以使用 Kubernetes 集群上的容器来运行 Fineract。确保您设置并连接到 Kubernetes 集群。您可以按照</font></font><a href="https://cwiki.apache.org/confluence/display/FINERACT/Install+and+configure+kubectl+and+Google+Cloud+SDK+on+ubuntu+16.04" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">本</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">指南在 GKE 上设置 Kubernetes 集群。确保替换</font></font><code>apache-fineract-cn</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">为</font></font><code>apache-fineract</code></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">现在，例如从您的 Google Cloud shell 运行以下命令：</font></font></p>
+<ol dir="auto">
+<li><code>git clone https://github.com/apache/fineract.git ; cd fineract/kubernetes</code></li>
+<li><code>./kubectl-startup.sh</code></li>
+</ol>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要关闭并重置集群，请运行：</font></font></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>./kubectl-shutdown.sh
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="./kubectl-shutdown.sh" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<h2 tabindex="-1" dir="auto"><a id="user-content-using-minikube" class="anchor" aria-hidden="true" tabindex="-1" href="#using-minikube"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用 Minikube</font></font></h2>
+<p dir="auto"><font style="vertical-align: inherit;"></font><a href="https://minikube.sigs.k8s.io/docs/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">或者，您可以使用minikube</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在本地 kubernetes 集群上运行fineract </font><font style="vertical-align: inherit;">。作为先决条件，您必须</font><font style="vertical-align: inherit;">在计算机上安装</font></font><code>minikube</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">并安装；</font></font><code>kubectl</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请参阅
+</font></font><a href="https://kubernetes.io/docs/tasks/tools/install-minikube/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Minikube 和 Kubectl 安装</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">现在要在 Minikube 上运行新的 Fineract 实例，您可以简单地：</font></font></p>
+<ol dir="auto">
+<li>
+<p dir="auto"><code>git clone https://github.com/apache/fineract.git ; cd fineract/kubernetes</code></p>
+</li>
+<li>
+<p dir="auto"><code>minikube start</code></p>
+</li>
+<li>
+<p dir="auto"><code>./kubectl-startup.sh</code></p>
+</li>
+<li>
+<p dir="auto"><code>minikube service fineract-server --url --https</code></p>
+</li>
+<li>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fineract 现在正在打印的 URL（注意 HTTP）上运行，您可以使用以下命令进行检查：</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">http --verify=no --timeout 240 --check-status get $(minikube 服务fineract-server --url --https)/fineract-provider/actuator/health</font></font></p>
+</li>
+</ol>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要检查本地 minikube Kubernetes 集群上容器的状态，请运行：</font></font></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>minikube dashboard
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="minikube dashboard" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您可以使用以下方法检查 Fineract 日志：</font></font></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>kubectl logs deployment/fineract-server
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="kubectl logs deployment/fineract-server" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要关闭并重置集群，请运行：</font></font></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>./kubectl-shutdown.sh
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="./kubectl-shutdown.sh" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要关闭并重置集群，请运行：</font></font></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>minikube ssh
 
-Please make sure that you are not checking in your changed values. The defaults should normally work for most people.
+sudo rm -rf /mnt/data/
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="minikube ssh
 
-Connection pool configuration
-=============================
-
-Please check `application.properties` to see which connection pool settings can be tweaked. The associated environment variables are prefixed with `FINERACT_HIKARI_*`. You can find more information about specific connection pool settings (Hikari) at https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby
-
-NOTE: we'll keep backwards compatibility until one of the next releases to ensure that things are working as expected. Environment variables prefixed `fineract_tenants_*` can still be used to configure the database connection, but we strongly encourage using `FINERACT_HIKARI_*` with more options.
-
-<br>SSL CONFIGURATION
-=================
-
-Read also [the HTTPS related doc](fineract-doc/src/docs/en/deployment.adoc#https).
-
-By default SSL is enabled, but all SSL related properties are now tunable. SSL can be turned off by setting the environment variable `FINERACT_SERVER_SSL_ENABLED` to false. If you do that then please make sure to also change the server port to `8080` via the variable `FINERACT_SERVER_PORT`, just for the sake of keeping the conventions.
-You can choose now easily a different SSL keystore by setting `FINERACT_SERVER_SSL_KEY_STORE` with a path to a different (not embedded) keystore. The password can be set via `FINERACT_SERVER_SSL_KEY_STORE_PASSWORD`. See the `application.properties` file and the latest Spring Boot documentation (https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html) for more details.
-
-
-<br>TOMCAT CONFIGURATION
-====================
-
-Please refer to the `application.properties` and the official Spring Boot documentation (https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html) on how to do performance tuning for Tomcat. Note: you can set now the acceptable form POST size (default is 2MB) via environment variable `FINERACT_SERVER_TOMCAT_MAX_HTTP_FORM_POST_SIZE`.
-
-
-<br>INSTRUCTIONS: How to run on Kubernetes
-=================================
-
-<br>General Clusters
-----------------
-
-You can also run Fineract using containers on a Kubernetes cluster.
-Make sure you set up and connect to your Kubernetes cluster.
-You can follow [this](https://cwiki.apache.org/confluence/display/FINERACT/Install+and+configure+kubectl+and+Google+Cloud+SDK+on+ubuntu+16.04) guide to set up a Kubernetes cluster on GKE. Make sure to replace `apache-fineract-cn` with `apache-fineract`
-
-Now e.g. from your Google Cloud shell, run the following commands:
-
-1. `git clone https://github.com/apache/fineract.git ; cd fineract/kubernetes`
-1. `./kubectl-startup.sh`
-
-To shutdown and reset your Cluster, run:
-
-    ./kubectl-shutdown.sh
-
-Using Minikube
---------------
-
-Alternatively, you can run fineract on a local kubernetes cluster using [minikube](https://minikube.sigs.k8s.io/docs/).
-As Prerequisites, you must have `minikube` and `kubectl` installed on your machine; see
-[Minikube & Kubectl install](https://kubernetes.io/docs/tasks/tools/install-minikube/).
-
-Now to run a new Fineract instance on Minikube you can simply:
-
-1. `git clone https://github.com/apache/fineract.git ; cd fineract/kubernetes`
-1. `minikube start`
-1. `./kubectl-startup.sh`
-1. `minikube service fineract-server --url --https`
-1. Fineract is now running at the printed URL (note HTTP), which you can check e.g. using:
-
-   http --verify=no --timeout 240 --check-status get $(minikube service fineract-server --url --https)/fineract-provider/actuator/health
-
-To check the status of your containers on your local minikube Kubernetes cluster, run:
-
-    minikube dashboard
-
-You can check Fineract logs using:
-
-    kubectl logs deployment/fineract-server
-
-To shutdown and reset your cluster, run:
-
-    ./kubectl-shutdown.sh
-
-To shutdown and reset your cluster, run:
-
-    minikube ssh
-
-    sudo rm -rf /mnt/data/
-
-We have [some open issues in JIRA with Kubernetes related enhancement ideas](https://jira.apache.org/jira/browse/FINERACT-783?jql=labels%20%3D%20kubernetes%20AND%20project%20%3D%20%22Apache%20Fineract%22%20) which you are welcome to contribute to.
-
-
-INSTRUCTIONS: How to download Gradle wrapper
-============
-The file gradle/wrapper/gradle-wrapper.jar binary is checked into this projects Git source repository,
-but won't exist in your copy of the Fineract codebase if you downloaded a released source archive from apache.org.
-In that case, you need to download it using the commands below:
-
-    wget --no-check-certificate -P gradle/wrapper https://github.com/apache/fineract/raw/develop/gradle/wrapper/gradle-wrapper.jar
-
-(or)
-
-    curl --insecure -L https://github.com/apache/fineract/raw/develop/gradle/wrapper/gradle-wrapper.jar > gradle/wrapper/gradle-wrapper.jar
-
-
-INSTRUCTIONS: How to run Apache RAT (Release Audit Tool)
-============
-1. Extract the archive file to your local directory.
-2. Run `./gradlew rat`. A report will be generated under build/reports/rat/rat-report.txt
-
-
-INSTRUCTIONS: How to enable External Message Broker (ActiveMQ or Apache Kafka)
-============
-
-There are two use-cases where external message broker is needed:
- - External Business Events / Reliable Event Framework
- - Executing Partitioned Spring Batch Jobs
-
-External Events are business events, e.g.: `ClientCreated`, which might be important for third party systems. Apache Fineract supports ActiveMQ (or other JMS compliant brokers) and Apache Kafka endpoints for sending out Business Events. By default, they are not emitted.
-
-In case of a large deployment with millions of accounts, the Close of Business Day Spring Batch job may run several hours. In order to speed up this task, remote partitioning of the job is supported. The Manager node partitions (breaks up) the COB job into smaller pieces (sub tasks) which then can be executed on multiple Worker nodes in parallel. The worker nodes are notified either by ActiveMQ or Kafka regarding their new sub tasks.
-### Active MQ
-
-JMS based messaging is disabled by default. In `docker-compose-postgresql-activemq.yml` an example is shown where ActiveMQ is enabled. In that configuration one Spring Batch Manager instance and two Spring Batch Worker instances are created.
-Spring based events should be disabled and jms based event handling should be enabled. Furthermore, proper broker JMS URL should be configured.
-
-```
-      FINERACT_REMOTE_JOB_MESSAGE_HANDLER_JMS_ENABLED=true
+sudo rm -rf /mnt/data/" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我们</font></font><a href="https://jira.apache.org/jira/browse/FINERACT-783?jql=labels%20%3D%20kubernetes%20AND%20project%20%3D%20%22Apache%20Fineract%22%20" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 JIRA 中存在一些与 Kubernetes 相关的增强想法的未解决问题</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，欢迎您参与贡献。</font></font></p>
+<h1 tabindex="-1" dir="auto"><a id="user-content-instructions-how-to-download-gradle-wrapper" class="anchor" aria-hidden="true" tabindex="-1" href="#instructions-how-to-download-gradle-wrapper"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">说明：如何下载 Gradle 包装器</font></font></h1>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文件 gradle/wrapper/gradle-wrapper.jar 二进制文件已签入此项目的 Git 源存储库，但如果您从 apache.org 下载了已发布的源存档，则该文件不会存在于 Fineract 代码库的副本中。在这种情况下，您需要使用以下命令下载它：</font></font></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>wget --no-check-certificate -P gradle/wrapper https://github.com/apache/fineract/raw/develop/gradle/wrapper/gradle-wrapper.jar
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="wget --no-check-certificate -P gradle/wrapper https://github.com/apache/fineract/raw/develop/gradle/wrapper/gradle-wrapper.jar" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（或者）</font></font></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>curl --insecure -L https://github.com/apache/fineract/raw/develop/gradle/wrapper/gradle-wrapper.jar &gt; gradle/wrapper/gradle-wrapper.jar
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="curl --insecure -L https://github.com/apache/fineract/raw/develop/gradle/wrapper/gradle-wrapper.jar > gradle/wrapper/gradle-wrapper.jar" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<h1 tabindex="-1" dir="auto"><a id="user-content-instructions-how-to-run-apache-rat-release-audit-tool" class="anchor" aria-hidden="true" tabindex="-1" href="#instructions-how-to-run-apache-rat-release-audit-tool"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">说明：如何运行 Apache RAT（发布审核工具）</font></font></h1>
+<ol dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将存档文件解压到本地目录。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">跑步</font></font><code>./gradlew rat</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。将在 build/reports/rat/rat-report.txt 下生成报告</font></font></li>
+</ol>
+<h1 tabindex="-1" dir="auto"><a id="user-content-instructions-how-to-enable-external-message-broker-activemq-or-apache-kafka" class="anchor" aria-hidden="true" tabindex="-1" href="#instructions-how-to-enable-external-message-broker-activemq-or-apache-kafka"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">说明：如何启用外部消息代理（ActiveMQ 或 Apache Kafka）</font></font></h1>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">有两种需要外部消息代理的用例：</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">外部业务事件/可靠事件框架</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">执行分区的 Spring Batch 作业</font></font></li>
+</ul>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">外部事件是业务事件，例如：</font></font><code>ClientCreated</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，这对于第三方系统可能很重要。 Apache Fineract 支持 ActiveMQ（或其他 JMS 兼容代理）和 Apache Kafka 端点来发送业务事件。默认情况下，它们不会被发射。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果是具有数百万个帐户的大型部署，则工作日结束时 Spring Batch 作业可能会运行几个小时。为了加快此任务的速度，支持作业的远程分区。 Manager 节点将 COB 作业划分（分解）为较小的部分（子任务），然后可以在多个 Worker 节点上并行执行。 ActiveMQ 或 Kafka 通知工作节点有关其新子任务的信息。</font></font></p>
+<h3 tabindex="-1" dir="auto"><a id="user-content-active-mq" class="anchor" aria-hidden="true" tabindex="-1" href="#active-mq"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">主动消息队列</font></font></h3>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">默认情况下禁用基于 JMS 的消息传递。</font></font><code>docker-compose-postgresql-activemq.yml</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">示例</font><font style="vertical-align: inherit;">中显示了启用 ActiveMQ 的情况。</font><font style="vertical-align: inherit;">在该配置中，将创建一个 Spring Batch Manager 实例和两个 Spring Batch Worker 实例。应禁用基于 Spring 的事件，并启用基于 jms 的事件处理。此外，还应该配置正确的代理 JMS URL。</font></font></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>      FINERACT_REMOTE_JOB_MESSAGE_HANDLER_JMS_ENABLED=true
       FINERACT_REMOTE_JOB_MESSAGE_HANDLER_SPRING_EVENTS_ENABLED=false
       FINERACT_REMOTE_JOB_MESSAGE_HANDLER_JMS_BROKER_URL=tcp://activemq:61616
-```
-
-For additional ActiveMQ related configuration please take a look to the `application.properties` where the supported configuration parameters are listed with their default values.
-
-### Kafka
-
-Kafka support also disabled by default. In `docker-compose-postgresql-kafka.yml` an example is shown where self-hosted Kafka is enabled for both External Events and Spring Batch Remote Job execution.
-
-During the development Fineract was tested with PLAINTEXT Kafka brokers without authentication and with AWS MSK using IAM authentication. The extra [jar file](https://github.com/aws/aws-msk-iam-auth/releases) required for IAM authentication is already added to the classpath.
-An example MSK setup can be found in `docker-compose-postgresql-kafka-msk.yml`.
-
-The full list of supported Kafka related properties are documented here: https://fineract.apache.org/docs/current/
-
-Checkstyle and Spotless
-============
-
-This project enforces its code conventions using [checkstyle.xml](config/checkstyle/checkstyle.xml) through Checkstyle and [fineract-formatting-preferences.xml](config/fineract-formatting-preferences.xml) through Spotless. They are configured to run automatically during the normal Gradle build, and fail if there are any violations detected. You can run the following command to automatically fix spotless violations:
-
-    `./gradlew spotlessApply`
-
-Since some checks are present in both Checkstyle and Spotless, the same command can help you fix some of the Checkstyle violations (but not all, other Checkstyle violations need to fixed manually).
-
-You can also check for Spotless violations (only; but normally don't have to, because the regular build full already includes this anyway):
-
-    `./gradlew spotlessCheck`
-
-We recommend that you configure your favourite Java IDE to match those conventions. For Eclipse, you can go to
-Window > Java > Code Style and import our [config/fineractdev-formatter.xml](config/fineractdev-formatter.xml) under formatter section and [config/fineractdev-cleanup.xml](config/fineractdev-cleanup.xml) under Clean up section. The same fineractdev-formatter.xml configuration file (that can be used in Eclipse IDE) is also used by Spotless to both check for violations and autoformat code on the CLI.
-You could also use Checkstyle directly in your IDE (but you don't neccesarily have to, it may just be more convenient for you).  For Eclipse, use https://checkstyle.org/eclipse-cs/ and load our checkstyle.xml into it, for IntelliJ you can use [CheckStyle-IDEA](https://plugins.jetbrains.com/plugin/1065-checkstyle-idea).
-
-
-Code Coverage Reports
-============
-
-The project uses Jacoco to measure unit tests code coverage, to generate a report run the following command:
-
-    `./gradlew clean build jacocoTestReport`
-
-Generated reports can be found in build/code-coverage directory.
-
-
-Versions
-============
-
-The latest stable release can be viewed on the develop branch: [Latest Release on Develop](https://github.com/apache/fineract/tree/develop "Latest Release").
-
-The progress of this project can be viewed here: [View change log](https://github.com/apache/fineract/blob/develop/CHANGELOG.md "Latest release change log")
-
-
-License
-============
-
-This project is licensed under Apache License Version 2.0. See <https://github.com/apache/incubator-fineract/blob/develop/LICENSE.md> for reference.
-
-The Connector/J JDBC Driver client library from MariaDB.org, which is licensed under the LGPL,
-is used in development when running integration tests that use the Liquibase library.  That JDBC
-driver is however not included in and distributed with the Fineract product and is not
-required to use the product.
-If you are developer and object to using the LGPL licensed Connector/J JDBC driver,
-simply do not run the integration tests that use the Liquibase library and/or use another JDBC driver.
-As discussed in [LEGAL-462](https://issues.apache.org/jira/browse/LEGAL-462), this project therefore
-complies with the [Apache Software Foundation third-party license policy](https://www.apache.org/legal/resolved.html).
-
-
-<br><br>APACHE FINERACT PLATFORM API
-============
-
-The API for Fineract is documented in [apiLive.htm](fineract-provider/src/main/resources/static/legacy-docs/apiLive.htm), and the [apiLive.htm can be viewed on fineract.apache.org](https://fineract.apache.org/docs/legacy/ "API Documentation").  If you have your own Fineract instance running, you can find this documentation under [/fineract-provider/legacy-docs/apiLive.htm](https://localhost:8443/fineract-provider/legacy-docs/apiLive.htm).
-
-The Swagger documentation (work in progress; see [FINERACT-733](https://issues.apache.org/jira/browse/FINERACT-733)) can be accessed under [/fineract-provider/swagger-ui/index.html](https://localhost:8443/fineract-provider/swagger-ui/index.html) and [live Swagger UI here on Fineract.dev](https://sandbox.mifos.community/fineract-provider/swagger-ui/index.html).
-
-Apache Fineract supports client code generation using [Swagger Codegen](https://github.com/swagger-api/swagger-codegen) based on the [OpenAPI Specification](https://swagger.io/specification/).  For more instructions on how to generate the client code, check [docs/developers/swagger/client.md](docs/developers/swagger/client.md).
-
-
-<br>API CLIENTS (Web UIs, Mobile, etc.)
-============
-
-* https://github.com/openMF/community-app/ is the "traditional" Reference Client App Web UI for the API offered by this project
-* https://github.com/openMF/web-app is the next generation UI rewrite also using this project's API
-* https://github.com/openMF/android-client is an Android Mobile App client for this project's API
-* https://github.com/openMF has more related proejcts
-
-
-<br>ONLINE DEMOS
-============
-
-* [sandbox.mifos.community](https://sandbox.mifos.community) always runs the latest version of this code
-* [demo.mifos.io](https://demo.mifos.io) A demo account is provided for users to experience the functionality of the Community App.  Users can use "mifos" for USERNAME and "password" for PASSWORD (without quotation marks).
-* [Swagger-UI Demo video](https://www.youtube.com/watch?v=FlVd-0YAo6c) This is a demo video for Swagger-UI documentation, more information [here](https://github.com/apache/fineract#swagger-ui-documentation).
-
-
-<br>DEVELOPERS
-============
-Please see <https://cwiki.apache.org/confluence/display/FINERACT/Contributor%27s+Zone> for the developers wiki page.
-
-Please refer to <https://cwiki.apache.org/confluence/display/FINERACT/Fineract+101> for the first-time contribution to this project.
-
-Please see <https://cwiki.apache.org/confluence/display/FINERACT/How-to+articles> for technical details to get started.
-
-Please visit [our JIRA Dashboard](https://issues.apache.org/jira/secure/Dashboard.jspa?selectPageId=12335824) to find issues to work on, see what others are working on, or open new issues.
-
-
-<br>VIDEO DEMONSTRATION
-============
-
-Apache Fineract / Mifos X Demo (November 2016) - <https://www.youtube.com/watch?v=h61g9TptMBo>
-
-<br>SWAGGER UI DEMONSTRATION
-============
-
-We use Swagger-UI to generate and maintain our API documentation, you can see the demo video [here](https://www.youtube.com/watch?v=FlVd-0YAo6c) or a live version
-[here](https://sandbox.mifos.community/fineract-provider/swagger-ui/index.html). If you interested to know more about Swagger-UI you can check their [website](https://swagger.io/).
-
-<br>GORVENANCE AND POLICIES
-=======================
-
-[Becoming a Committer](https://cwiki.apache.org/confluence/display/FINERACT/Becoming+a+Committer)
-documents the process through which you can become a committer in this project.
-
-
-<br>ERROR HANDLING GUIDELINES
-------------------
-* When catching exceptions, either rethrow them, or log them.  Either way, include the root cause by using `catch (SomeException e)` and then either `throw AnotherException("..details..", e)` or `LOG.error("...context...", e)`.
-* Completely empty catch blocks are VERY suspicous!  Are you sure that you want to just "swallow" an exception?  Really, 100% totally absolutely sure?? ;-) Such "normal exceptions which just happen sometimes but are actually not really errors" are almost always a bad idea, can be a performance issue, and typically are an indication of another problem - e.g. the use of a wrong API which throws an Exception for an expected condition, when really you would want to use another API that instead returns something empty or optional.
-* In tests, you'll typically never catch exceptions, but just propagate them, with `@Test void testXYZ() throws SomeException, AnotherException`..., so that the test fails if the exception happens.  Unless you actually really want to test for the occurence of a problem - in that case, use [JUnit's Assert.assertThrows()](https://github.com/junit-team/junit4/wiki/Exception-testing) (but not `@Test(expected = SomeException.class)`).
-* Never catch `NullPointerException` & Co.
-
-<br>LOGGING GUIDELINES
-------------------
-* We use [SLF4J](http://www.slf4j.org) as our logging API.
-* Never, ever, use `System.out` and `System.err` or `printStackTrace()` anywhere, but always `LOG.info()` or `LOG.error()` instead.
-* Use placeholder (`LOG.error("Could not... details: {}", something, exception)`) and never String concatenation (`LOG.error("Could not... details: " + something, exception)`)
-* Which Log Level is appropriate?
-    * `LOG.error()` should be used to inform an "operator" running Fineract who supervises error logs of an unexpected condition.  This includes technical problems with an external "environment" (e.g. can't reach a database), and situations which are likely bugs which need to be fixed in the code.  They do NOT include e.g. validation errors for incoming API requests - that is signaled through the API response - and does (should) not be logged as an error.  (Note that there is no _FATAL_ level in SLF4J; a "FATAL" event should just be logged as an _ERROR_.)
-    * `LOG.warn()` should be using sparingly.  Make up your mind if it's an error (above) - or not!
-    * `LOG.info()` can be used notably for one-time actions taken during start-up.  It should typically NOT be used to print out "regular" application usage information.  The default logging configuration always outputs the application INFO logs, and in production under load, there's really no point to constantly spew out lots of information from frequently traversed paths in the code about what's going on.  (Metrics are a better way.)  `LOG.info()` *can* be used freely in tests though.
-    * `LOG.debug()` can be used anywhere in the code to log things that may be useful during investigations of specific problems.  They are not shown in the default logging configuration, but can be enabled for troubleshooting.  Developers should typically "turn down" most `LOG.info()` which they used while writing a new feature to "follow along what happens during local testing" to `LOG.debug()` for production before we merge their PRs.
-    * `LOG.trace()` is not used in Fineract.
-
-Pull Requests
--------------
-
-We request that your commit message include a FINERACT JIRA issue, recommended to be put in parentheses at the end of the first line.  Start with an upper case imperative verb (not past form), and a short but concise clear description. (E.g. _Add enforced HideUtilityClassConstructor checkstyle (FINERACT-821)_ or _Fix inability to reschedule when interest accrued larger than EMI (FINERACT-1109)_ etc.).
-
-If your PR is failing to pass our CI build due to a test failure, then:
-
-1. Understand if the failure is due to your PR or an unrelated unstable test.
-1. If you suspect it is because of a "flaky" test, and not due to a change in your PR, then please do not simply wait for an active maintainer to come and help you, but instead be a proactive contributor to the project - see next steps.  Do understand that we may not review PRs that are not green - it is the contributor's (that's you!) responsability to get a proposed PR to pass the build, not primarily the maintainers.
-1. Search for the name of the failed test on https://issues.apache.org/jira/, e.g. for `AccountingScenarioIntegrationTest` you would find [FINERACT-899](https://issues.apache.org/jira/browse/FINERACT-899).
-1. If you happen to read in such bugs that tests were just recently fixed, or ignored, then rebase your PR to pick up that change.
-1. If you find previous comments "proving" that the same test has arbitrarily failed in at least 3 past PRs, then please do yourself raise a small separate new PR proposing to add an `@Disabled // TODO FINERACT-123` to the respective unstable test (e.g. [#774](https://github.com/apache/fineract/pull/774)) with the commit message mentioning said JIRA, as always.  (Please do NOT just `@Disabled` any existing tests mixed in as part of your larger PR.)
-1. If there is no existing JIRA for the test, then first please evaluate whether the failure couldn't be a (perhaps strange) impact of the change you are proposing after all.  If it's not, then please raise a new JIRA to document the suspected Flaky Test, and link it to [FINERACT-850](https://issues.apache.org/jira/browse/FINERACT-850).  This will allow the next person coming along hitting the same test failure to easily find it, and eventually propose to ignore the unstable test.
-1. Then (only) Close and Reopen your PR, which will cause a new build, to see if it passes.
-1. Of course, we very much appreciate you then jumping onto any such bugs and helping us figure out how to fix all ignored tests!
-
-[Pull Request Size Limit](https://cwiki.apache.org/confluence/display/FINERACT/Pull+Request+Size+Limit)
-documents that we cannot accept huge "code dump" Pull Requests, with some related suggestions.
-
-Guideline for new Feature commits involving Refactoring: If you are submitting PR for a new Feature,
-and it involves refactoring, try to differentiate "new Feature code" with "Refactored" by placing
-them in different commits. This helps review to review your code faster.
-
-We have an automated Bot which marks pull requests as "stale" after a while, and ultimately automatically closes them.
-
-
-Merge Strategy
---------------
-
-This project's committers typically prefer to bring your Pull Requests in through _Rebase and Merge_ instead of _Create a Merge Commit_. (If you are unfamiliar with GitHub's UI re. this, note the somewhat hidden little triangle drop-down at the bottom of PR, visible only to committers, not contributors.)  This avoids the "merge commits" which we consider to be somewhat "polluting" the projects commits log history view.  We understand this doesn't give an easy automatic reference to the original PR (which GitHub automatically adds to the Merge Commit message it generates), but we consider this an only very minor inconvenience; it's typically relatively easy to find the original PR even just from the commit message, and JIRA.
-
-We expect most proposed PRs to typically consist of a single commit.  Committers may use _Squash and merge_ to combine your commits at merge time, and if they do so will rewrite your commit message as they see fit.
-
-Neither of these two are hard absolute rules, but mere conventions.  Multiple commits in single PR make sense in certain cases (e.g. branch backports).
-
-
-Dependency Upgrades
--------------------
-
-This project uses a number of 3rd-party libraries, and this section provides some guidance for their updates. We have set-up [Renovate's bot](https://renovate.whitesourcesoftware.com) to automatically raise Pull Requests for our review when new dependencies are available [FINERACT-962](https://issues.apache.org/jira/browse/FINERACT-962).
-
-Upgrades sometimes require package name changes.  Changed code should ideally have test coverage.
-
-Our `ClasspathHellDuplicatesCheckRuleTest` detects classes that appear in more than 1 JAR.  If a version bump in [`build.gradle`](https://github.com/search?q=repo%3Aapache%2Ffineract+filename%3Abuild.gradle&type=Code&ref=advsearch&l=&l=) causes changes in transitives dependencies, then you may have to add related `exclude` to our [`dependencies.gradle`](https://github.com/apache/fineract/search?q=dependencies.gradle).  Running `./gradlew dependencies` helps to understand what is required.
-
-
-More Information
-============
-More details of the project can be found at <https://cwiki.apache.org/confluence/display/FINERACT>.
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="      FINERACT_REMOTE_JOB_MESSAGE_HANDLER_JMS_ENABLED=true
+      FINERACT_REMOTE_JOB_MESSAGE_HANDLER_SPRING_EVENTS_ENABLED=false
+      FINERACT_REMOTE_JOB_MESSAGE_HANDLER_JMS_BROKER_URL=tcp://activemq:61616" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">有关其他 ActiveMQ 相关配置，请查看</font></font><code>application.properties</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">列出了支持的配置参数及其默认值的位置。</font></font></p>
+<h3 tabindex="-1" dir="auto"><a id="user-content-kafka" class="anchor" aria-hidden="true" tabindex="-1" href="#kafka"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">卡夫卡</font></font></h3>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">默认情况下，Kafka 支持也是禁用的。在</font></font><code>docker-compose-postgresql-kafka.yml</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">一个示例中，显示了为外部事件和 Spring Batch 远程作业执行启用自托管 Kafka 的情况。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在开发过程中，Fineract 在没有身份验证的情况下使用 PLAINTEXT Kafka 代理以及使用 IAM 身份验证的 AWS MSK 进行了测试。 IAM 身份验证所需的</font><font style="vertical-align: inherit;">额外</font></font><a href="https://github.com/aws/aws-msk-iam-auth/releases"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">jar 文件</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">已添加到类路径中。可以在 中找到 MSK 设置示例</font></font><code>docker-compose-postgresql-kafka-msk.yml</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">支持的 Kafka 相关属性的完整列表记录在此处：</font></font><a href="https://fineract.apache.org/docs/current/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https ://fineract.apache.org/docs/current/</font></font></a></p>
+<h1 tabindex="-1" dir="auto"><a id="user-content-checkstyle-and-spotless" class="anchor" aria-hidden="true" tabindex="-1" href="#checkstyle-and-spotless"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">检查风格和一尘不染</font></font></h1>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该项目通过 Checkstyle 使用</font></font><a href="/apache/fineract/blob/develop/config/checkstyle/checkstyle.xml"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">checkstyle.xml</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">并通过 Spotless 使用</font></font><a href="/apache/fineract/blob/develop/config/fineract-formatting-preferences.xml"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fineract-formatting-preferences.xml</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">强制执行其代码约定。它们被配置为在正常 Gradle 构建期间自动运行，如果检测到任何违规，它们就会失败。您可以运行以下命令来自动修复完美的违规行为：</font></font></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>`./gradlew spotlessApply`
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="`./gradlew spotlessApply`" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">由于 Checkstyle 和 Spotless 中都存在一些检查，因此相同的命令可以帮助您修复一些 Checkstyle 违规（但不是全部，其他 Checkstyle 违规需要手动修复）。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您还可以检查 Spotless 违规（仅；但通常不必这样做，因为常规构建完整版已经包含了这一点）：</font></font></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>`./gradlew spotlessCheck`
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="`./gradlew spotlessCheck`" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我们建议您配置您最喜欢的 Java IDE 以匹配这些约定。对于 Eclipse，您可以转到“窗口”&gt;“Java”&gt;“代码样式”，然后</font><font style="vertical-align: inherit;">在格式化程序部分导入我们的</font></font><a href="/apache/fineract/blob/develop/config/fineractdev-formatter.xml"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">config/fineractdev-formatter.xml</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ，在清理部分导入</font></font><a href="/apache/fineract/blob/develop/config/fineractdev-cleanup.xml"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">config/fineractdev-cleanup.xml</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 。 Spotless 还使用相同的fineractdev-formatter.xml 配置文件（可在 Eclipse IDE 中使用）来检查 CLI 上的违规情况和自动格式化代码。您还可以直接在 IDE 中使用 Checkstyle（但您不一定必须这样做，它可能只是对您来说更方便）。对于 Eclipse，请使用</font></font><a href="https://checkstyle.org/eclipse-cs/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://checkstyle.org/eclipse-cs/</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">并将我们的 checkstyle.xml 加载到其中，对于 IntelliJ，您可以使用</font></font><a href="https://plugins.jetbrains.com/plugin/1065-checkstyle-idea" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CheckStyle-IDEA</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+<h1 tabindex="-1" dir="auto"><a id="user-content-code-coverage-reports" class="anchor" aria-hidden="true" tabindex="-1" href="#code-coverage-reports"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">代码覆盖率报告</font></font></h1>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该项目使用 Jacoco 来测量单元测试代码覆盖率，运行以下命令生成报告：</font></font></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>`./gradlew clean build jacocoTestReport`
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="`./gradlew clean build jacocoTestReport`" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">生成的报告可以在 build/code-coverage 目录中找到。</font></font></p>
+<h1 tabindex="-1" dir="auto"><a id="user-content-versions" class="anchor" aria-hidden="true" tabindex="-1" href="#versions"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">版本</font></font></h1>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">最新的稳定版本可以在开发分支上查看：</font></font><a href="https://github.com/apache/fineract/tree/develop" title="最新发布"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">最新版本的开发</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">这个项目的进展可以在这里查看：</font></font><a href="https://github.com/apache/fineract/blob/develop/CHANGELOG.md" title="最新版本变更日志"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">查看变更日志</font></font></a></p>
+<h1 tabindex="-1" dir="auto"><a id="user-content-license" class="anchor" aria-hidden="true" tabindex="-1" href="#license"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">执照</font></font></h1>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该项目根据 Apache License Version 2.0 获得许可。请参阅</font></font><a href="https://github.com/apache/incubator-fineract/blob/develop/LICENSE.md"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://github.com/apache/incubator-fineract/blob/develop/LICENSE.md</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">以供参考。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">MariaDB.org 中的 Connector/J JDBC 驱动程序客户端库已获得 LGPL 许可，在运行使用 Liquibase 库的集成测试时在开发中使用。然而，该 JDBC 驱动程序不包含在 Fineract 产品中也不随其分发，并且不需要使用该产品。如果您是开发人员并且反对使用 LGPL 许可的 Connector/J JDBC 驱动程序，则不要运行使用 Liquibase 库和/或使用其他 JDBC 驱动程序的集成测试。正如</font></font><a href="https://issues.apache.org/jira/browse/LEGAL-462" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LEGAL-462</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">中所讨论的</font><font style="vertical-align: inherit;">，该项目因此符合</font></font><a href="https://www.apache.org/legal/resolved.html" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apache Software Foundation 第三方许可政策</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+<h1 tabindex="-1" dir="auto"><a id="user-content-apache-fineract-platform-api" class="anchor" aria-hidden="true" tabindex="-1" href="#apache-fineract-platform-api"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><br><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">APACHE FINERACT 平台 API</font></font></h1>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fineract 的 API 记录在</font></font><a href="/apache/fineract/blob/develop/fineract-provider/src/main/resources/static/legacy-docs/apiLive.htm"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">apiLive.htm</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">中，并且</font></font><a href="https://fineract.apache.org/docs/legacy/" title="API文档" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">apiLive.htm 可以在 Fineract.apache.org 上查看</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。如果您正在运行自己的 Fineract 实例，则可以在</font></font><a href="https://localhost:8443/fineract-provider/legacy-docs/apiLive.htm" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">/fineract-provider/legacy-docs/apiLive.htm</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">下找到此文档。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Swagger 文档（正在进行中；请参阅</font></font><a href="https://issues.apache.org/jira/browse/FINERACT-733" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">FINERACT-733 ）可以在</font></font></a><font style="vertical-align: inherit;"></font><a href="https://localhost:8443/fineract-provider/swagger-ui/index.html" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">/fineract-provider/swagger-ui/index.html</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">下访问</font><font style="vertical-align: inherit;">，并</font></font><a href="https://sandbox.mifos.community/fineract-provider/swagger-ui/index.html" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Fineract.dev 上访问实时 Swagger UI</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apache Fineract 支持使用</font><font style="vertical-align: inherit;">基于</font><a href="https://swagger.io/specification/" rel="nofollow"><font style="vertical-align: inherit;">OpenAPI 规范的</font></a></font><a href="https://github.com/swagger-api/swagger-codegen"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Swagger Codegen</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">生成客户端代码。有关如何生成客户端代码的更多说明，请查看</font><a href="/apache/fineract/blob/develop/docs/developers/swagger/client.md"><font style="vertical-align: inherit;">docs/developers/swagger/client.md</font></a><font style="vertical-align: inherit;">。</font></font><a href="https://swagger.io/specification/" rel="nofollow"><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"></font><a href="/apache/fineract/blob/develop/docs/developers/swagger/client.md"><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"></font></p>
+<h1 tabindex="-1" dir="auto"><a id="user-content-api-clients-web-uis-mobile-etc" class="anchor" aria-hidden="true" tabindex="-1" href="#api-clients-web-uis-mobile-etc"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">API 客户端（Web UI、移动设备等）</font></font></h1>
+<ul dir="auto">
+<li><a href="https://github.com/openMF/community-app/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://github.com/openMF/community-app/</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是该项目提供的 API 的“传统”参考客户端应用程序 Web UI</font></font></li>
+<li><a href="https://github.com/openMF/web-app"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://github.com/openMF/web-app</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是下一代 UI 重写，也使用该项目的 API</font></font></li>
+<li><a href="https://github.com/openMF/android-client"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://github.com/openMF/android-client</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是该项目 API 的 Android 移动应用客户端</font></font></li>
+<li><a href="https://github.com/openMF"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://github.com/openMF</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">有更多相关项目</font></font></li>
+</ul>
+<h1 tabindex="-1" dir="auto"><a id="user-content-online-demos" class="anchor" aria-hidden="true" tabindex="-1" href="#online-demos"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在线演示</font></font></h1>
+<ul dir="auto">
+<li><a href="https://sandbox.mifos.community" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">sandbox.mifos.community</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">始终运行此代码的最新版本</font></font></li>
+<li><a href="https://demo.mifos.io" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">demo.mifos.io</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">提供模拟帐户供用户体验社区应用程序的功能。用户可以使用“mifos”作为用户名，使用“密码”作为密码（不带引号）。</font></font></li>
+<li><a href="https://www.youtube.com/watch?v=FlVd-0YAo6c" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Swagger-UI 演示视频</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">这是 Swagger-UI 文档的演示视频，更多信息请参见</font></font><a href="https://github.com/apache/fineract#swagger-ui-documentation"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">此处</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></li>
+</ul>
+<h1 tabindex="-1" dir="auto"><a id="user-content-developers" class="anchor" aria-hidden="true" tabindex="-1" href="#developers"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">开发商</font></font></h1>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请参阅</font></font><a href="https://cwiki.apache.org/confluence/display/FINERACT/Contributor%27s+Zone" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://cwiki.apache.org/confluence/display/FINERACT/Contributor%27s+Zone</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">了解开发人员 wiki 页面。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">有关该项目的首次贡献，</font><font style="vertical-align: inherit;">请参阅</font></font><a href="https://cwiki.apache.org/confluence/display/FINERACT/Fineract+101" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://cwiki.apache.org/confluence/display/FINERACT/Fineract+101 。</font></font></a><font style="vertical-align: inherit;"></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请参阅</font></font><a href="https://cwiki.apache.org/confluence/display/FINERACT/How-to+articles" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://cwiki.apache.org/confluence/display/FINERACT/How-to+articles</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">了解入门技术详细信息。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请访问</font></font><a href="https://issues.apache.org/jira/secure/Dashboard.jspa?selectPageId=12335824" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我们的 JIRA 仪表板</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">来查找要处理的问题、查看其他人正在处理的内容或提出新问题。</font></font></p>
+<h1 tabindex="-1" dir="auto"><a id="user-content-video-demonstration" class="anchor" aria-hidden="true" tabindex="-1" href="#video-demonstration"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">视频演示</font></font></h1>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apache Fineract / Mifos X 演示（2016 年 11 月）- </font></font><a href="https://www.youtube.com/watch?v=h61g9TptMBo" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.youtube.com/watch?v=h61g9TptMBo</font></font></a></p>
+<h1 tabindex="-1" dir="auto"><a id="user-content-swagger-ui-demonstration" class="anchor" aria-hidden="true" tabindex="-1" href="#swagger-ui-demonstration"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Swagger UI 演示</font></font></h1>
+<p dir="auto"><font style="vertical-align: inherit;"></font><a href="https://www.youtube.com/watch?v=FlVd-0YAo6c" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我们使用 Swagger-UI 来生成和维护我们的 API 文档，您可以在此处</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">查看演示视频或</font></font><a href="https://sandbox.mifos.community/fineract-provider/swagger-ui/index.html" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此处</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">查看实时版本
+</font><font style="vertical-align: inherit;">。如果您有兴趣了解有关 Swagger-UI 的更多信息，可以查看他们的</font></font><a href="https://swagger.io/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">网站</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+<h1 tabindex="-1" dir="auto"><a id="user-content-gorvenance-and-policies" class="anchor" aria-hidden="true" tabindex="-1" href="#gorvenance-and-policies"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">治理和政策</font></font></h1>
+<p dir="auto"><a href="https://cwiki.apache.org/confluence/display/FINERACT/Becoming+a+Committer" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">成为提交者</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+记录了您成为该项目的提交者的过程。</font></font></p>
+<h2 tabindex="-1" dir="auto"><a id="user-content-error-handling-guidelines" class="anchor" aria-hidden="true" tabindex="-1" href="#error-handling-guidelines"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">错误处理指南</font></font></h2>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">捕获异常时，要么重新抛出它们，要么记录它们。无论哪种方式，请先使用</font></font><code>catch (SomeException e)</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，然后使用</font></font><code>throw AnotherException("..details..", e)</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">或来</font><font style="vertical-align: inherit;">包含根本原因</font></font><code>LOG.error("...context...", e)</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">完全空的 catch 块非常可疑！您确定要“吞掉”异常吗？真的，100%完全确定吗？ ;-) 这种“有时会发生但实际上并不是真正错误的正常异常”几乎总是一个坏主意，可能是一个性能问题，并且通常是另一个问题的指示 - 例如，使用错误的 API 会引发预期条件的异常，当您确实想要使用另一个返回空或可选内容的 API 时。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在测试中，您通常永远不会捕获异常，而只是使用 ... 传播它们</font></font><code>@Test void testXYZ() throws SomeException, AnotherException</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，以便在发生异常时测试失败。除非您确实想要测试问题的发生 - 在这种情况下，请使用</font></font><a href="https://github.com/junit-team/junit4/wiki/Exception-testing"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">JUnit 的 Assert.assertThrows()</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（但不是</font></font><code>@Test(expected = SomeException.class)</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">永远不要赶上</font></font><code>NullPointerException</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">＆Co.</font></font></li>
+</ul>
+<h2 tabindex="-1" dir="auto"><a id="user-content-logging-guidelines" class="anchor" aria-hidden="true" tabindex="-1" href="#logging-guidelines"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">记录指南</font></font></h2>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我们使用</font></font><a href="http://www.slf4j.org" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SLF4J</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">作为我们的日志记录 API。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">永远、永远不要在任何地方使用</font></font><code>System.out</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">and</font></font><code>System.err</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">或</font></font><code>printStackTrace()</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，而总是</font></font><code>LOG.info()</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">或</font></font><code>LOG.error()</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">替代。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用占位符 ( </font></font><code>LOG.error("Could not... details: {}", something, exception)</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">)，切勿使用字符串连接 ( </font></font><code>LOG.error("Could not... details: " + something, exception)</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">)</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">哪个日志级别合适？
+</font></font><ul dir="auto">
+<li><code>LOG.error()</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">应用于通知运行Fineract 的“操作员”，该“操作员”负责监督意外情况的错误日志。这包括外部“环境”的技术问题（例如无法访问数据库），以及可能是需要在代码中修复的错误的情况。它们不包括例如传入 API 请求的验证错误（通过 API 响应发出信号）并且不（不应该）记录为错误。 （请注意，SLF4J 中没有</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">FATAL</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">级别；“FATAL”事件应仅记录为</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ERROR</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。）</font></font></li>
+<li><code>LOG.warn()</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">应谨慎使用。下定决心如果这是一个错误（上面） - 或不是！</font></font></li>
+<li><code>LOG.info()</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">特别适用于启动期间采取的一次性操作。它通常不应用于打印“常规”应用程序使用信息。默认日志配置始终输出应用程序 INFO 日志，并且在负载下的生产中，确实没有必要从代码中经常遍历的路径中不断地输出有关正在发生的情况的大量信息。 （指标是一种更好的方法。）  不过</font></font><code>LOG.info()</code> <em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">可以</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在测试中自由使用。</font></font></li>
+<li><code>LOG.debug()</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">可以在代码中的任何位置使用来记录在调查特定问题期间可能有用的内容。它们不会显示在默认日志记录配置中，但可以启用它们以进行故障排除。</font><font style="vertical-align: inherit;">在我们合并他们的 PR 之前，</font><font style="vertical-align: inherit;">开发人员通常应该“拒绝”</font></font><code>LOG.info()</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">他们在编写新功能时使用的大部分内容，以“遵循本地测试期间发生的情况”进行生产。</font></font><code>LOG.debug()</code><font style="vertical-align: inherit;"></font></li>
+<li><code>LOG.trace()</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fineract 中未使用。</font></font></li>
+</ul>
+</li>
+</ul>
+<h2 tabindex="-1" dir="auto"><a id="user-content-pull-requests" class="anchor" aria-hidden="true" tabindex="-1" href="#pull-requests"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请求请求</font></font></h2>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我们要求您的提交消息包含 FINERACT JIRA 问题，建议将其放在第一行末尾的括号中。以大写的祈使动词（不是过去形式）开始，然后是简短而简洁的清晰描述。 （例如</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，添加强制的 HideUtilityClassConstructor 检查样式 (FINERACT-821)</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">或</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">修复当累积利息大于 EMI 时无法重新安排的问题 (FINERACT-1109)</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">等）。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果您的 PR 由于测试失败而未能通过我们的 CI 构建，那么：</font></font></p>
+<ol dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">了解失败是否是由于您的 PR 或不相关的不稳定测试造成的。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果您怀疑这是因为“不稳定”测试，而不是由于 PR 的更改，那么请不要简单地等待活跃的维护者来帮助您，而是成为项目的积极贡献者 - 请参阅下一步。请理解，我们可能不会审查非绿色的 PR - 贡献者（即您！）有责任获得提议的 PR 以通过构建，而不是维护者。</font></font></li>
+<li><font style="vertical-align: inherit;"></font><a href="https://issues.apache.org/jira/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在https://issues.apache.org/jira/</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">上搜索失败测试的名称</font><font style="vertical-align: inherit;">，例如</font></font><code>AccountingScenarioIntegrationTest</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您会找到</font></font><a href="https://issues.apache.org/jira/browse/FINERACT-899" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">FINERACT-899</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果您碰巧读到此类错误，表明测试最近刚刚修复或被忽略，那么请重新调整您的 PR 以获取该更改。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果您发现之前的评论“证明”相同的测试在至少 3 个过去的 PR 中任意失败，那么请您自己提出一个小的单独的新 PR，建议将一个添加到</font></font><code>@Disabled // TODO FINERACT-123</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">相应的不稳定测试（例如</font></font><a href="https://github.com/apache/fineract/pull/774" data-hovercard-type="pull_request" data-hovercard-url="/apache/fineract/pull/774/hovercard"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">#774</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）并提交消息一如既往地提到 JIRA。 （请不要将</font></font><code>@Disabled</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任何现有测试混入更大的 PR 中。）</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果没有现有的 JIRA 用于测试，那么首先请评估失败是否不是您所提议的更改的（也许是奇怪的）影响。如果不是，请提出一个新的 JIRA 来记录可疑的 Flaky Test，并将其链接到</font></font><a href="https://issues.apache.org/jira/browse/FINERACT-850" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">FINERACT-850</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。这将使下一个遇到相同测试失败的人能够轻松找到它，并最终建议忽略不稳定的测试。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">然后（仅）关闭并重新打开您的 PR，这将导致新的构建，看看它是否通过。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">当然，我们非常感谢您发现任何此类错误并帮助我们找出如何修复所有被忽略的测试！</font></font></li>
+</ol>
+<p dir="auto"><a href="https://cwiki.apache.org/confluence/display/FINERACT/Pull+Request+Size+Limit" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">拉取请求大小限制</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+记录了我们不能接受巨大的“代码转储”拉取请求，并提供了一些相关建议。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">涉及重构的新功能提交指南：如果您正在提交新功能的 PR，并且涉及重构，请尝试通过将“新功能代码”与“重构”放在不同的提交中来区分它们。这有助于更快地审查您的代码。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我们有一个自动化机器人，它会在一段时间后将拉取请求标记为“过时”，并最终自动关闭它们。</font></font></p>
+<h2 tabindex="-1" dir="auto"><a id="user-content-merge-strategy" class="anchor" aria-hidden="true" tabindex="-1" href="#merge-strategy"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">合并策略</font></font></h2>
+<p dir="auto"><font style="vertical-align: inherit;"></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该项目的提交者通常更喜欢通过Rebase 和 Merge</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">引入 Pull Request，</font><font style="vertical-align: inherit;">而不是</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建合并提交</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。 （如果您不熟悉 GitHub 的 UI re.this，请注意 PR 底部有点隐藏的小三角形下拉菜单，仅对提交者可见，而不对贡献者可见。）这避免了我们认为有点“合并提交”的情况。污染”项目提交日志历史视图。我们知道这并不能简单地自动引用原始 PR（GitHub 会自动将其添加到它生成的合并提交消息中），但我们认为这只是一个非常小的不便；即使仅从提交消息和 JIRA 中找到原始 PR 通常也相对容易。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我们预计大多数提议的 PR 通常包含一次提交。提交者可以</font><font style="vertical-align: inherit;">在合并时</font><font style="vertical-align: inherit;">使用</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Squash 和 merge来合并您的提交，如果他们这样做，他们将按照他们认为合适的方式重写您的提交消息。</font></font></em><font style="vertical-align: inherit;"></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">这两条都不是硬性的绝对规则，而只是惯例。在某些情况下（例如分支向后移植），单个 PR 中的多次提交是有意义的。</font></font></p>
+<h2 tabindex="-1" dir="auto"><a id="user-content-dependency-upgrades" class="anchor" aria-hidden="true" tabindex="-1" href="#dependency-upgrades"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">依赖升级</font></font></h2>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该项目使用了许多第三方库，本节为其更新提供了一些指导。我们已经设置了</font></font><a href="https://renovate.whitesourcesoftware.com" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Renovate 的机器人</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，以便在新的依赖项可用时自动提出 Pull 请求供我们审核</font></font><a href="https://issues.apache.org/jira/browse/FINERACT-962" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">FINERACT-962</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">升级有时需要更改包名称。理想情况下，更改的代码应该具有测试覆盖率。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我们</font></font><code>ClasspathHellDuplicatesCheckRuleTest</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">检测出现在超过 1 个 JAR 中的类。如果版本更新导致</font></font><a href="https://github.com/search?q=repo%3Aapache%2Ffineract+filename%3Abuild.gradle&amp;type=Code&amp;ref=advsearch&amp;l=&amp;l="><code>build.gradle</code></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">传递依赖项发生变化，那么您可能必须添加与</font></font><code>exclude</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我们的</font></font><a href="https://github.com/apache/fineract/search?q=dependencies.gradle"><code>dependencies.gradle</code></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">.跑步</font></font><code>./gradlew dependencies</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">有助于了解需要什么。</font></font></p>
+<h1 tabindex="-1" dir="auto"><a id="user-content-more-information" class="anchor" aria-hidden="true" tabindex="-1" href="#more-information"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">更多信息</font></font></h1>
+<p dir="auto"><font style="vertical-align: inherit;"></font><a href="https://cwiki.apache.org/confluence/display/FINERACT" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该项目的更多详细信息可以在https://cwiki.apache.org/confluence/display/FINERACT</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">找到</font><font style="vertical-align: inherit;">。</font></font></p>
+</article></div>
